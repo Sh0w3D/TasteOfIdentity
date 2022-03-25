@@ -18,7 +18,7 @@ namespace TaseOfIdentity.Controllers
         {
             var students = await studentService.List();
 
-            return Ok();
+            return Ok(students);
         }
     }
 }

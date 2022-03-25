@@ -1,6 +1,6 @@
 using DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
-using Npgsql.EntityFrameworkCore.PostgreSQL;
+using TaseOfIdentity.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +10,8 @@ var dbConnectionString = builder.Configuration.GetConnectionString("DefaultConne
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(dbConnectionString));
 
+
+builder.Services.AddScoped<IStudentService, StudentService>();
 var app = builder.Build();
 app.MapControllers();
 
