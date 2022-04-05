@@ -1,0 +1,28 @@
+﻿@page "/Student"
+
+
+<h3>Students</h3>
+
+<div class="row">
+    @if (StudentList.Any())
+    {
+        @foreach(var student in StudentList)
+        {
+            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4 mh-25 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@student.Name</h5>
+                        <p class="card-text">@student.Surname</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <span>Created at: @student.UpdatedTime</span>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No Students available!</p>
+    }
+</div>
