@@ -1,3 +1,4 @@
+using Client.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -8,6 +9,10 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
 
+builder.Services.Configure<IdentityServerSettings>(builder
+    .Configuration.GetSection("IdentityServerSettings"));
+
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
 
@@ -24,6 +29,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
